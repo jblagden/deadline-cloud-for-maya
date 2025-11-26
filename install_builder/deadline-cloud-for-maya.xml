@@ -61,13 +61,19 @@
 		<stringParameter name="deadline_cloud_for_maya_summary" ask="0" cliOptionShow="0">
 			<value>Deadline Cloud for Maya 2024 - 2026
 - Compatible with Maya 2024 - 2026.
-- Plugin support: Arnold, V-Ray, and Redshift for Maya 2024-2025; only Arnold for Maya 2026.
-- Support for V-Ray and Redshift in Maya 2026 is planned for a future release.
+- Plugin support: Arnold for Maya 2024-2026; VRay and Redshift for Maya 2025-2026.
 - Install the integrated Maya submitter files to the installation directory.
 - Register the plug-in with Maya by creating or updating the MAYA_MODULE_PATH environment variable.</value>
 		</stringParameter>
 	</parameterList>
     <postInstallationActionList>
+        <fnAddPathEnvironmentVariable>
+			<progressText>Registering plug-in with Maya</progressText>
+			<name>MAYA_MODULE_PATH</name>
+			<value>${maya_installdir}</value>
+			<scope>${installscope}</scope>
+			<insertAt>end</insertAt>
+		</fnAddPathEnvironmentVariable>
         <unzip>
             <destinationDirectory>${maya_installdir}/scripts</destinationDirectory>
             <zipFile>${installdir}/tmp/maya_deps/dependency_bundle/deadline_cloud_for_maya_submitter-deps.zip</zipFile>
@@ -92,48 +98,6 @@
                 <copyFile>
                     <origin>${installdir}/DeadlineCloudForMaya.mod</origin>
                     <destination>${user_home_directory}/Library/Preferences/Autodesk/maya/modules/DeadlineCloudForMaya.mod</destination>
-                </copyFile>
-            </actionList>
-        </if>
-        <if>
-            <conditionRuleList>
-                <platformTest type="linux" />
-                <compareText logic="equals" text="${installscope}" value="user"/>
-            </conditionRuleList>
-            <actionList>
-                <runProgram>
-                    <program>bash</program>
-                    <programArguments>-c "
-                        sed -E -i 's#(\+ DeadlineCloudForMaya [^ ]*) \.#\1 '"${installdir}"'#' \"${installdir}/DeadlineCloudForMaya.mod\"
-                    "</programArguments>
-                </runProgram>
-                <createDirectory>
-                    <path>${user_home_directory}/maya/modules</path>
-                </createDirectory>
-                <copyFile>
-                    <origin>${installdir}/DeadlineCloudForMaya.mod</origin>
-                    <destination>${user_home_directory}/maya/modules/DeadlineCloudForMaya.mod</destination>
-                </copyFile>
-            </actionList>
-        </if>
-        <if>
-            <conditionRuleList>
-                <platformTest type="linux" />
-                <compareText logic="equals" text="${installscope}" value="system"/>
-            </conditionRuleList>
-            <actionList>
-                <runProgram>
-                    <program>bash</program>
-                    <programArguments>-c "
-                        sed -E -i 's#(\+ DeadlineCloudForMaya [^ ]*) \.#\1 '"${installdir}"'#' \"${installdir}/DeadlineCloudForMaya.mod\"
-                    "</programArguments>
-                </runProgram>
-                <createDirectory>
-                    <path>/usr/autodesk/modules/maya</path>
-                </createDirectory>
-                <copyFile>
-                    <origin>${installdir}/DeadlineCloudForMaya.mod</origin>
-                    <destination>/usr/autodesk/modules/maya/DeadlineCloudForMaya.mod</destination>
                 </copyFile>
             </actionList>
         </if>

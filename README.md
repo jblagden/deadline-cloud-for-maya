@@ -1,5 +1,7 @@
 # AWS Deadline Cloud for Maya
 
+### [User guide](https://aws-deadline.github.io/) | [Service documentation](https://docs.aws.amazon.com/deadline-cloud/) | [Deadline Cloud on GitHub](https://github.com/aws-deadline/) 
+
 [![pypi](https://img.shields.io/pypi/v/deadline-cloud-for-maya.svg?style=flat)](https://pypi.python.org/pypi/deadline-cloud-for-maya)
 [![python](https://img.shields.io/pypi/pyversions/deadline-cloud-for-maya.svg?style=flat)](https://pypi.python.org/pypi/deadline-cloud-for-maya)
 [![license](https://img.shields.io/pypi/l/deadline-cloud-for-maya.svg?style=flat)](https://github.com/aws-deadline/deadline-cloud-for-maya/blob/mainline/LICENSE)
@@ -27,8 +29,7 @@ This library requires:
 1. Python 3.9 or higher; and
 1. Linux, Windows, or a macOS operating system.
 
-Plugin support: Arnold, V-Ray, and Redshift for Maya 2024-2025; only Arnold for Maya 2026.
-Support for V-Ray and Redshift in Maya 2026 is planned for a future release.
+Plugin support: Arnold for Maya 2024-2026; VRay and Redshift for Maya 2025-2026.
 
 ## Versioning
 

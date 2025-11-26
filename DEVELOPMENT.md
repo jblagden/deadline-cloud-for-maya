@@ -78,14 +78,24 @@ dependencies installed into it. Then, activate the hatch shell environment, set 
 developer options in the plugin, and run maya:
 
 ```bash
+# Linux
 hatch shell
 export DEADLINE_ENABLE_DEVELOPER_OPTIONS=true
 maya
 ```
 
+```bash
+# Windows
+hatch shell
+$env:DEADLINE_ENABLE_DEVELOPER_OPTIONS = "true"
+maya
+```
+
 You will need to load the plug-in within Maya once the application has completed loading. In the main menu bar, go to
 Windows > Settings/Preferences > Plug-In Manager and you will find that `DeadlineCloudForMaya.py` is available as a
-plug-in. Check the checkbox to have Maya load the plug-in and create the AWSDeadline tray for you. Click the icon on
+plug-in.
+
+ Check the checkbox to have Maya load the plug-in and create the AWSDeadline tray for you. Click the icon on
 the tray to open the submitter.
 
 You can use the "Export Bundle" option in the submitter to save the job bundle for a submission to your local disk
@@ -189,6 +199,18 @@ and running and adding to the unit tests until you are comfortable that your cha
 Testing locally like this will allow you to iterate faster on your change than the alternative of testing by
 submitting jobs to Deadline Cloud to run using your modified adaptor. Then, test it out on a real render farm only once
 you think that your change is functioning as you'd like.
+
+#### Schema Versioning and the Integration Data Interface Version
+
+The adaptor uses two JSON schema files to define the contract between the Maya submitter (running on artist workstations)
+and the Maya adaptor (running on cloud render workers):
+
+- `src/deadline/maya_adaptor/MayaAdaptor/schemas/init_data.schema.json` - Defines the initialization data passed once when the adaptor starts
+- `src/deadline/maya_adaptor/MayaAdaptor/schemas/run_data.schema.json` - Defines the per-task data passed for each frame/task to render
+
+**Important:** Whenever you modify either of these schema files, you **must** also update the `integration_data_interface_version`
+in `src/deadline/maya_adaptor/MayaAdaptor/adaptor.py` following semantic versioning. 
+
 
 #### Running the Adaptor Locally
 

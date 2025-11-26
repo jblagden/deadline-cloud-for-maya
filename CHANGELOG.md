@@ -1,3 +1,24 @@
+## 0.15.12 (2025-09-29)
+
+
+### Features
+* Added support for Redshift2025 with Maya2026 (#338) ([`952bbfa`](https://github.com/aws-deadline/deadline-cloud-for-maya/commit/952bbfa9b2095c0cb33149cc8d8a32e7ad398fad))
+
+
+## 0.15.11 (2025-09-22)
+
+
+### Features
+* add support for Maya Vray 2026 (#327) ([`3a09beb`](https://github.com/aws-deadline/deadline-cloud-for-maya/commit/3a09beb05dd915b1eb11a772e3b4e574c5315848))
+
+
+## 0.15.10 (2025-09-17)
+
+
+
+### Bug Fixes
+* Revert "chore: change linux install to create a mod file rather than rely on env var (#315)" (#328) ([`3087a96`](https://github.com/aws-deadline/deadline-cloud-for-maya/commit/3087a96a90a3f73aaed0b138e621987d01023188))
+
 ## 0.15.9 (2025-09-15)
 
 
