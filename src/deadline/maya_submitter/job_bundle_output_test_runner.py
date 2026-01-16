@@ -177,10 +177,10 @@ def run_maya_render_submitter_job_bundle_output_test():
                 if "renderman" in dcc_scene_file:
                     if (
                         (not maya.cmds.pluginInfo("RenderMan_for_Maya", query=True, loaded=True))
-                        or (
+                        and (
                             not maya.cmds.pluginInfo("RenderManForMaya.py", query=True, loaded=True)
                         )
-                        or (not maya.cmds.pluginInfo("rfm", query=True, loaded=True))
+                        and (not maya.cmds.pluginInfo("rfm", query=True, loaded=True))
                     ):
                         report_fh.write(
                             f"Skipping test {test_name} because Renderman for Maya is not installed."
