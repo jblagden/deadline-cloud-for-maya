@@ -60,8 +60,10 @@ class RenderManHandler(DefaultMayaHandler):
             RuntimeError: If Renderman for Maya was not loaded
         """
 
-        if (not maya.cmds.pluginInfo("RenderMan_for_Maya", query=True, loaded=True)) or (
-            not maya.cmds.pluginInfo("RenderManForMaya.py", query=True, loaded=True)
+        if (
+            (not maya.cmds.pluginInfo("RenderMan_for_Maya", query=True, loaded=True))
+            or (not maya.cmds.pluginInfo("RenderManForMaya.py", query=True, loaded=True))
+            or (not maya.cmds.pluginInfo("rfm", query=True, loaded=True))
         ):
             raise RuntimeError(
                 "MayaClient: The RenderMan for Maya plugin was not loaded. Please verify that it is installed."
